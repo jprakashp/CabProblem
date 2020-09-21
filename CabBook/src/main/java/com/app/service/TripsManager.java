@@ -47,13 +47,14 @@ public class TripsManager {
 		return trips.get(rider.getRiderId());
 	}
 
-	public void endTrip(Cab cab) {
+	public boolean endTrip(Cab cab) {
 		if (cab.getCurrentTrip() == null) {
-			throw new TripNotFoundException("no trip found");
+			return false;
+		}else {
+			cab.getCurrentTrip().endTrip();
+			cab.setCurrentTrip(null);
+			return true;
 		}
-
-		cab.getCurrentTrip().endTrip();
-		cab.setCurrentTrip(null);
 	}
 
 }

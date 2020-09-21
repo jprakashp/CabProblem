@@ -42,4 +42,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 				new ErrorMessage(new Date(), exception.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
 	}
+	@ExceptionHandler(CabNotFoundException.class)
+	public ResponseEntity<Object> cabNotFoundExceptionHandling(CabNotFoundException exception, WebRequest request){
+		ErrorMessage errorMessage = 
+				new ErrorMessage(new Date(), exception.getMessage(), request.getDescription(false));
+		return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+	}
 }
